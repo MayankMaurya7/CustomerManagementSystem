@@ -1,0 +1,1 @@
+export const CUSTOMER_TABLE_HEADER = [{ key: 1, header: "Sr.no" , value: "Sr.no" }, { key: 2, header: "Name", value: "Name" }, { key: 3, header: "No of Items", value: "itemCount" }, { key: 4, header: "Amount", value: "amount" },{ key: 5, header: "Actions", value: "Actions" }];
