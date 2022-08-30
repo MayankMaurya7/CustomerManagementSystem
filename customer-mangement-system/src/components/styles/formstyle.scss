@@ -1,0 +1,28 @@
+.form-container{
+    max-width: 40%;
+    border: 1px solid;
+    margin-left: 20px;
+    h3{
+        border-bottom: 1px solid;
+    }
+    .form-box{
+        padding-left: 10px;
+        .field{
+            display: flex;
+            justify-content: space-between;
+            label{
+                font-size: small;
+                margin-bottom: 5px;
+                margin-right: 1px;
+            }
+            input{
+                margin-bottom: 5px;
+            }
+        }
+    }
+    .Update-button{
+        background-color: teal;
+        margin-top: 12px;
+        cursor: pointer;
+    }
+}

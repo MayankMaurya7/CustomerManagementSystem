@@ -23,10 +23,11 @@ const customerDetailsReducer = (state = initialState, action) => {
     }
     case EDIT_CUSTOMER: {
 
-
+        console.log("state.customerData",state.customerData)
         const unEditedCustomerData = state.customerData.filter(
         (customerData) => customerData.id !== action.payload.id
       );
+      console.log("unEditedCustomerData",unEditedCustomerData);
         const updatedcustomerData = [
           ...unEditedCustomerData,
           action.payload,

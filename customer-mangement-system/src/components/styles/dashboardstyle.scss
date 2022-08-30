@@ -1,0 +1,34 @@
+// * {
+//     box-sizing: border-box;
+//     overflow-wrap: break-word;
+//     letter-spacing: 1px;
+//   }
+//   body {
+//     background-color: #f7f7f7;
+//     display: flex;
+//     flex-direction: row;
+//      align-items: center;
+//     justify-content: center;
+//     min-height: 100vh;
+//     margin: 0;
+//     font-family: "Lato", sans-serif;
+//     color: red;
+//   }
+
+.main-container{
+
+  width: 100vw;
+  .add-button{
+  cursor: pointer;
+  background-color: rgb(29, 150, 29);
+  margin-left: 52%;
+  margin-bottom: 10px;
+  height: 2rem;
+  }
+  .display-components-container{
+    display: flex;
+    justify-content:center;
+  }
+
+}
+  
