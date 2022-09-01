@@ -1,15 +1,9 @@
 * {
   box-sizing: border-box;
   overflow-wrap: break-word;
-  /* letter-spacing: 1px; */
 }
 body {
   background-color: #f7f7f7;
-  /* display: flex; */
-  /* flex-direction: row; */
-  /* align-items: center; */
-  /* justify-content: center; */
-  /* min-height: 100vh; */
   margin: 0;
   font-family: "Lato", sans-serif;
   color: #389189;
@@ -33,13 +27,3 @@ body {
   justify-content: space-between;
   align-items: center;
 }
-/* .t-action-btn {
-  cursor: pointer;
-  transition: transform 0.2s;
-}
-.t-action-btn :hover {
-  transform: scale(1.5);
-}
-.t-action-drop{
-  width: 10px;
-} */ 
