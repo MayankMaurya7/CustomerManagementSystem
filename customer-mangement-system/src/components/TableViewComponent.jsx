@@ -2,7 +2,7 @@ import React from 'react'
 import { Table, Button} from 'semantic-ui-react';
 import { CUSTOMER_TABLE_HEADER } from './constants';
 import { useDispatch } from "react-redux";
-import { selectedCustomer } from '../redux/customer-details/customerDetailsAction';
+import { removeCustomer, selectedCustomer } from '../redux/customer-details/customerDetailsAction';
 import "./styles/tableviewstyle.scss"
 
 
@@ -17,6 +17,11 @@ function TableViewComponent({data ,removeAddDetailsMode}) {
         dispatch(selectedCustomer(selectedCustomerData));
         removeAddDetailsMode()
     };
+    const handleDeleteClicked = (selectedCustomerData) => {
+        // eslint-disable-next-line no-restricted-globals
+        confirm("Delete this entry?") ? dispatch(removeCustomer(selectedCustomerData)):console.log("");
+        
+    };
 
     const getValue =(fieldName, item, index)=>{
         // console.log(fieldName, item, index );
@@ -30,7 +35,7 @@ function TableViewComponent({data ,removeAddDetailsMode}) {
             case "Actions" : return (
                         <Table.Cell className="table-action">
                                 <Button content="Edit" className='edit-button' onClick={()=> handleEditClicked(item)}/>
-                                <Button content="Delete" className='delete-button'/>
+                                <Button content="Delete" className='delete-button' onClick={()=> handleDeleteClicked(item)}/>
                         </Table.Cell>
             )
             default : return itemData;

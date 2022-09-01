@@ -43,7 +43,7 @@ const customerDetailsReducer = (state = initialState, action) => {
     case DELETE_CUSTOMER: {
       //  payload sample ="1596199359844"
       const updatedcustomerData = state.customerData.filter(
-        (customerData) => customerData.id !== action.payload
+        (customerData) => customerData.id !== action.payload.id
       );
       return {
         ...state,

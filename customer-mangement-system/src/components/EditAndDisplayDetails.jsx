@@ -5,34 +5,41 @@ import { Button, Form, Input, Label } from 'semantic-ui-react';
 import { addCustomer, updateCustomerDetails } from '../redux/customer-details/customerDetailsAction';
 import "./styles/formstyle.scss"
 
-function EditAndDisplayDetails({addCustomerFlag,removeAddDetailsMode}) {
+const initData = {   
+    firstName: "",
+    lastName: "",
+    itemCount: "",
+    amount: "",
+}
+function EditAndDisplayDetails({addCustomerFlag}) {
     const selectedCustomerData = useSelector((state) => state.selectedCustomer);
 
     // console.log("selectedCustomerData",selectedCustomerData);
     const dispatch = useDispatch();
-    const [thiscustomerData, setThiscustomerData] = useState();
-    const [isValueEmpty, setIsValueEmpty] = useState(false);
+    const [thiscustomerData, setThiscustomerData] = useState(initData);
+    const [isValueEmpty, setIsValueEmpty] = useState(true);
 
     useEffect(()=>{
         setThiscustomerData(selectedCustomerData)
     },[selectedCustomerData])
     useEffect(()=>{
-        addCustomerFlag && setThiscustomerData({})
+        addCustomerFlag && setThiscustomerData(initData)
     },[addCustomerFlag])
     console.log("thiscustomerData",thiscustomerData);
-    useEffect(()=>{
-        function validation(){
-            const formValues = thiscustomerData?Object.values(thiscustomerData):[]
-            let flag = false;
+    // useEffect(()=>{
+    //     function validation(){
+    //         const formValues = thiscustomerData?Object.values(thiscustomerData):[]
+    //         let flag = false;
             
-                for(const value of formValues){
-                    // console.log("value",value);
-                    typeof(value)==='string' && value.trim() ==="" ?flag = true :console.log("value",value)
-                }
-                return flag;
-          }
-    setIsValueEmpty(validation())
-    },[thiscustomerData])
+    //             for(const value of formValues){
+    //                 // console.log("value",value);
+    //                 !!value === false || (typeof(value)==='string' && value.trim() ==="") ?flag = true :console.log("value",value)
+    //             }
+    //             return flag;
+    //       }
+
+    // setIsValueEmpty(validation())
+    // },[thiscustomerData])
   
     const handleInput = (e) => {
         // e.target.value.trim() === ""? setIsValueEmpty(true):
@@ -60,19 +67,25 @@ function EditAndDisplayDetails({addCustomerFlag,removeAddDetailsMode}) {
     //         return flag;
     //   }
     const handleSubmit = () => {
-        const editSubmit =()=>{
-            if(isValueEmpty){
+
+        const isvalid = Object.entries(thiscustomerData).every((item)=>{
+            const[key,value] = item;
+            return Boolean(value)
+        })
+            if(!isvalid){
+                console.log("ifisValueEmptyhandlesubmit",isValueEmpty);
                 alert("Please fill all the fields");
+
             }else{
-                dispatch(updateCustomerDetails(thiscustomerData))
-                
+                console.log("isValueEmptyhandlesubmitelse",isValueEmpty);
+                addCustomerFlag?setThiscustomerData({...thiscustomerData,id: Math.random()}):console.log("");
+                addCustomerFlag? dispatch(addCustomer(thiscustomerData)):dispatch(updateCustomerDetails(thiscustomerData))
             }
-        }
-        addCustomerFlag? dispatch(addCustomer(thiscustomerData)): editSubmit()
     };
 
     const renderHeading = ()=> addCustomerFlag? "Enter Details" : "Edit Details"
     const renderSubmitButton = ()=> addCustomerFlag? "Add New Customer" : "Update"
+    
 
     return (
         

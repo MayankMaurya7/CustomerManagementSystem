@@ -8,7 +8,7 @@ import { Button } from 'semantic-ui-react';
 function CmsDashboard() {
     const customerData = useSelector((state) => state.customerData);
     console.log("data",customerData);
-    const [addCustomerFlag, setAddCustomerFlag] = useState(false);
+    const [addCustomerFlag, setAddCustomerFlag] = useState(true);
 
 
     const switchToAddDetailsMode = () =>{
