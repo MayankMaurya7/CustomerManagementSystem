@@ -3,14 +3,10 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Button, Form, Input, Label } from 'semantic-ui-react';
 import { addCustomer, updateCustomerDetails } from '../redux/customer-details/customerDetailsAction';
+import { initData } from './constants';
 import "./styles/formstyle.scss"
 
-const initData = {   
-    firstName: "",
-    lastName: "",
-    itemCount: "",
-    amount: "",
-}
+
 function EditAndDisplayDetails({addCustomerFlag}) {
     const selectedCustomerData = useSelector((state) => state.selectedCustomer);
 
