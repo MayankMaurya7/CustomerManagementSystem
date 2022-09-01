@@ -14,10 +14,8 @@ const initData = {
 function EditAndDisplayDetails({addCustomerFlag}) {
     const selectedCustomerData = useSelector((state) => state.selectedCustomer);
 
-    // console.log("selectedCustomerData",selectedCustomerData);
     const dispatch = useDispatch();
     const [thiscustomerData, setThiscustomerData] = useState(initData);
-    const [isValueEmpty, setIsValueEmpty] = useState(true);
 
     useEffect(()=>{
         setThiscustomerData(selectedCustomerData)
@@ -25,24 +23,8 @@ function EditAndDisplayDetails({addCustomerFlag}) {
     useEffect(()=>{
         addCustomerFlag && setThiscustomerData(initData)
     },[addCustomerFlag])
-    console.log("thiscustomerData",thiscustomerData);
-    // useEffect(()=>{
-    //     function validation(){
-    //         const formValues = thiscustomerData?Object.values(thiscustomerData):[]
-    //         let flag = false;
-            
-    //             for(const value of formValues){
-    //                 // console.log("value",value);
-    //                 !!value === false || (typeof(value)==='string' && value.trim() ==="") ?flag = true :console.log("value",value)
-    //             }
-    //             return flag;
-    //       }
-
-    // setIsValueEmpty(validation())
-    // },[thiscustomerData])
   
     const handleInput = (e) => {
-        // e.target.value.trim() === ""? setIsValueEmpty(true):
         if (e.target.id === "firstName") {
             setThiscustomerData({ ...thiscustomerData, firstName: e.target.value });
           } else if (e.target.id === "lastName") {
@@ -56,16 +38,6 @@ function EditAndDisplayDetails({addCustomerFlag}) {
           }
       }
     
-    //   const validation = ()=>{
-    //     const formValues = Object.values(thiscustomerData);
-    //     let flag = false;
-        
-    //         for(const value of formValues){
-    //             console.log("value",value);
-    //             typeof(value)==='string' && value.trim() ==="" ?flag = true :console.log("value",value)
-    //         }
-    //         return flag;
-    //   }
     const handleSubmit = () => {
 
         const isvalid = Object.entries(thiscustomerData).every((item)=>{
@@ -73,12 +45,10 @@ function EditAndDisplayDetails({addCustomerFlag}) {
             return Boolean(value)
         })
             if(!isvalid){
-                console.log("ifisValueEmptyhandlesubmit",isValueEmpty);
                 alert("Please fill all the fields");
 
             }else{
-                console.log("isValueEmptyhandlesubmitelse",isValueEmpty);
-                addCustomerFlag?setThiscustomerData({...thiscustomerData,id: Math.random()}):console.log("");
+                addCustomerFlag && setThiscustomerData({...thiscustomerData,id: Math.random()});
                 addCustomerFlag? dispatch(addCustomer(thiscustomerData)):dispatch(updateCustomerDetails(thiscustomerData))
             }
     };
@@ -90,7 +60,6 @@ function EditAndDisplayDetails({addCustomerFlag}) {
     return (
         
       <div className="form-container">
-        {console.log("thiscustomerData1",thiscustomerData)}
         <h3>{renderHeading()}</h3>
         <Form className="form-box" size={"small"} key={"small"}>
                 <Form.Field
